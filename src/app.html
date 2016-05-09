@@ -1,0 +1,78 @@
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#manage-app-navbar-collapse">
+                <span class="sr-only">Toggle navigations</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand">NDC manage app</span>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="manage-app-navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li 
+                    id='app.manage.menu.member_menu_item'
+                    ng-show="login_user.has_perm('ndc_user.change_ndc_user')" 
+                    class="dropdown" 
+                    dropdown>
+                    <a class="dropdown-toggle" href="#" dropdown-toggle>member <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a 
+                            id="app.manage.menu.member_btn"
+                            ng-click="manage_member()">manage</a>
+                        </li> 
+                    </ul>
+                </li>
+                <li class="dropdown" dropdown>
+                    <a href="#" class="dropdown-toggle" dropdown-toggle>event <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li 
+                            id='app.manage.menu.event.default_rate_menu_item'
+                            ng-show="login_user.has_perm('event.change_default_rate') && login_user.has_perm('event.add_default_rate')">
+                            <a 
+                                id="app.manage.menu.event.default_rate_btn"
+                                ng-click="manage_event_default_rate()">default rate</a>
+                        </li> 
+                        <li 
+                            id='app.manage.menu.event.create_menu_item'
+                            ng-show="login_user.has_perm('event.add_event')">
+                            <a 
+                                id="app.manage.menu.event.create_btn"
+                                ng-click="create_event()">create</a>
+                        </li>    
+
+                        <li 
+                            id='app.manage.menu.event.manage_menu_item'
+                            ng-show="login_user.has_perm('event.add_event') && login_user.has_perm('event.change_event')">
+                            <a 
+                                id="app.manage.menu.event.manage_btn"
+                                ng-click="manage_event()">manage</a>
+                        </li>      
+                        <li 
+                            id='app.manage.menu.event.checkin_menu_item'
+                            ng-show="login_user.has_perm('event.event_checkin')">
+                            <a 
+                                id="app.manage.menu.event.checkin_btn"
+                                ng-click="checkin_event()">checkin</a>
+                        </li>                                           
+                    </ul>
+                </li>   
+                <li class="dropdown" dropdown>
+                    <a href="#" class="dropdown-toggle" dropdown-toggle>{{ login_user.get_full_name() }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a>profile</a></li>
+                        <li>
+                            <a 
+                                id="app.manage.menu.user.logout_btn"
+                                ng-click="logout()">logout</a></li>                        
+                    </ul>
+                </li>                      
+            </ul>   
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>  
